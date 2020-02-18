@@ -8,5 +8,8 @@ app.get('/', (req, res) => {
 	res.send({hi: 'there'});
 });
 
-app.listen(5000); //localhost:5000 (listen to port 5000)
+
+//dynamically find which port we should listen to
+const PORT = process.env.PORT || 5000;
+app.listen(PORT); 
 
