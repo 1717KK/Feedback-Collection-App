@@ -31,26 +31,24 @@ passport.use(
 		}, 
 		// this arrow function is to take this identifying user information and save it
 		// to our database
-		(accessToken, refreshToken, profile, done) => {
+		async (accessToken, refreshToken, profile, done) => {
 			// console.log('access token', accessToken); // allow us to reach back over to google 
 			// console.log('refresh token', refreshToken); // allow us to refresh the access token
 			// console.log('profile', profile);
 
-			User.findOne({googleId: profile.id})
-				.then((existingUser) => {
-					if(existingUser){
-						//we already have a record with given profile ID
-						done(null, existingUser);
-					} else {
-						// we don't have a user record with this ID, make a new record
+			//one promise
+			const existingUser = await User.findOne({googleId: profile.id})
+			if(existingUser){
+				//we already have a record with given profile ID
+				return done(null, existingUser);
+			} 
 
-						//save(): it will automatically take this record, this model instance
-						//and it will save it to the database
-						new User({ googleId: profile.id })
-							.save()
-							.then(user => done(null, user));
-					}
-				});
+			// we don't have a user record with this ID, make a new record
+			//second promise
+			//save(): it will automatically take this record, this model instance
+			//and it will save it to the database
+			const user = await new User({ googleId: profile.id }).save()
+			done(null, user);
 		}
 	)
 );
