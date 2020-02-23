@@ -1,14 +1,15 @@
-//import 'materialize-css/dist/css/materialize.min.css';
+import 'materialize-css/dist/css/materialize.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
 
 import App from './components/App';
 import reducers from './reducers';
 
 // second argument: provide the initial state of application
-const store = createStore(reducers, {}, applyMiddleware());
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 // two arguments: root component & where we are attempting to render that component to
 // ReactDOM.render(...) 是渲染方法，所有的 js,html 都可通过它进行渲染绘制，他有两个参数，内容和渲染目标 js 对象

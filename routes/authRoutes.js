@@ -10,17 +10,28 @@ module.exports = app => {
 	app.get(
 		'/auth/google', 
 		passport.authenticate('google', {
-			scope: ['profile', 'email']
+			scope: ['profile', 'email'],
+			// prompt: 'select_account'
 		})
 	);
 
 	//add a second route handler to handle the case in which a user visits /auth/google/callback
-	app.get('/auth/google/callback', passport.authenticate('google'));
+	app.get(
+		'/auth/google/callback', 
+		passport.authenticate('google'),
+		(req, res) => {
+			res.redirect('/surveys');
+		}
+	);
 
-	app.get('/api/logout', (req, res) => {
-		req.logout(); // kill the cookie
-		res.send(req.user); // prove the user no longer signed in
-	});
+	app.get(
+		'/api/logout', 
+		(req, res) => {
+			req.logout(); // kill the cookie
+			// res.send(req.user); // prove the user no longer signed in
+			res.redirect('/');
+		}
+	);
 
 	//the third route handler: get request and send result
 	//incoming request and outgoing result

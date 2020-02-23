@@ -2,3 +2,6 @@ node_modules
 dev.js
 demo.js
 xx.js
+.env.development
+.env.production
+sheltered-island-08688
