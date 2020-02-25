@@ -1,5 +1,2 @@
-<<<<<<< HEAD
-# Feedback-Collection-App
-=======
-# Feedback-collection-app
->>>>>>> 405c1cfd6ac9492154d36df580bccd75249fa9b2
+Have a try :)
+https://sheltered-island-08688.herokuapp.com/
