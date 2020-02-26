@@ -13,6 +13,7 @@ require('./models/Survey');
 require('./services/passport');
 
 // connect to mongoDB
+mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI);
 
 // create an express application
