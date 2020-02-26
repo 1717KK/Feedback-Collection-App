@@ -18,7 +18,7 @@ module.exports = app => {
 	});
 
 	app.get('/api/surveys/:surveyId/:choice', (req, res) => {
-		res.send('Thanks for voting!');
+		res.send('Thanks for voting and have a good day!');
 	});
 
 	app.post('/api/surveys/webhooks', (req, res) => {
